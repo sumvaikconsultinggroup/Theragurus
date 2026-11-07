@@ -1,0 +1,9 @@
+.git
+.next
+.next-local
+.data
+.test-data
+.impeccable
+.reanimate
+.env.local
+*.tsbuildinfo

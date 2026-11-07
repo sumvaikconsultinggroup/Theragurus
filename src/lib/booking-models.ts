@@ -1,0 +1,53 @@
+import type { Appointment, Customer, VisitMode } from "./booking-catalog";
+export type CustomerRecord = Customer & {
+  password_hash: string;
+  recovery_hash: string;
+  auth_version: number;
+  created_at: string;
+};
+export type SessionRecord = {
+  _id: string;
+  customer_id: string;
+  auth_version: number;
+  expires_at: Date;
+};
+export type AppointmentRecord = {
+  id: string;
+  reference: string;
+  customer_id: string | null;
+  guest_hash: string | null;
+  service_id: string;
+  mode: VisitMode;
+  start_at: string;
+  end_at: string;
+  timezone: string;
+  name: string;
+  email: string;
+  phone: string;
+  country: string;
+  region: string;
+  organization: string;
+  program: string;
+  status: Appointment["status"];
+  admin_status?: "requested" | "confirmed" | "completed" | "no_show";
+  payment_status: Appointment["paymentStatus"] | "pending_quote";
+  amount: number | null;
+  collected_at?: string;
+  collected_by?: string;
+  coupon_code?: string;
+  coupon_name?: string;
+  coupon_kind?: "percent" | "amount";
+  coupon_value?: number;
+  discount?: number;
+  list_amount?: number | null;
+  intake?: { hope: string; timing: string; contact: string } | null;
+  created_at: string;
+  updated_at: string;
+  idempotency_key: string;
+};
+export type RequestLimitRecord = {
+  _id: string;
+  count: number;
+  expires_at: Date;
+};
+export type ScheduleRecord = { _id: string; version: number };

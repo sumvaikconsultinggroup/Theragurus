@@ -1,0 +1,137 @@
+.pelvic-anatomy {
+  --anatomy-surface: #f4f7f3;
+  position: relative;
+  padding-block: clamp(64px, 7vw, 104px) 48px;
+  background: var(--anatomy-surface);
+  color: var(--brand-blue);
+  isolation: isolate;
+  scroll-margin-top: 110px;
+}
+
+.anatomy-introduction {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: end;
+  gap: 80px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid #d5dfd5;
+}
+
+.anatomy-introduction h2 { max-width: 700px; }
+.anatomy-introduction h2 em { font-weight: inherit; }
+.anatomy-introduction > p { max-width: 43ch; padding-bottom: 3px; }
+.anatomy-track, .anatomy-stage { position: relative; }
+.anatomy-trail { display: none; position: absolute; inset: 0; pointer-events: none; }
+.anatomy-trail-base { stroke: #c5d4c4; stroke-width: 1; }
+.anatomy-trail-progress { stroke: #76a044; stroke-width: 1.5; stroke-dasharray: 1; }
+
+.anatomy-traveller { width: min(600px, 100%); margin: 40px auto 20px; }
+.anatomy-visual { position: relative; width: 100%; aspect-ratio: 1.2; }
+.anatomy-illustration { position: absolute; left: 6%; top: 15%; width: 88%; height: auto; }
+.anatomy-leaders { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.anatomy-leader-line { stroke: var(--brand-blue); stroke-width: 1.2; stroke-dasharray: 1; vector-effect: non-scaling-stroke; }
+.anatomy-leader--compact { display: none; }
+.anatomy-point-halo { stroke: #648f34; stroke-width: 1; fill: #f4f7f3cc; }
+.anatomy-point { fill: #689b2c; }
+
+.anatomy-callout { position: absolute; width: 43%; padding: 5px 7px; background: var(--anatomy-surface); }
+.anatomy-callout strong { display: block; color: var(--brand-deep); font-size: 15px; font-weight: 500; line-height: 1.4; }
+.anatomy-callout p { margin-top: 5px; font-size: 12px; line-height: 1.6; max-width: 26ch; }
+.anatomy-callout--0 { top: 1%; left: 4%; }
+.anatomy-callout--1 { bottom: 3%; right: 0; }
+.anatomy-callout--2 { top: 1%; right: 0; }
+[data-anatomy-callout="1"], [data-anatomy-callout="2"] { visibility: hidden; opacity: 0; }
+
+.anatomy-waypoints { display: flex; gap: 22px; padding-block: 28px; }
+.anatomy-waypoints button { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; border: 0; padding: 3px 0; background: none; color: var(--brand-muted); font-size: 12px; line-height: 1.6; }
+.anatomy-waypoint-line { display: block; width: 46px; height: 2px; background: #c5d4c4; transition: width 250ms ease, background 250ms ease; }
+.anatomy-waypoints button[aria-current] { color: var(--brand-deep); }
+.anatomy-waypoints button[aria-current] .anatomy-waypoint-line { width: 70px; background: #638e30; }
+.anatomy-waypoints button:hover .anatomy-waypoint-line { background: #638e30; }
+
+.anatomy-chapters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; }
+.anatomy-copy h3 { font-size: clamp(30px, 3.1vw, 44px); line-height: 1.14; }
+.anatomy-copy > p { max-width: 43ch; margin-top: 23px; font-size: 15px; line-height: 1.85; }
+.anatomy-copy > p + p { margin-top: 16px; }
+.anatomy-copy > .text-link, .anatomy-copy > .tg-button { margin-top: 30px; }
+.anatomy-dock { display: none; }
+.anatomy-more { margin-top: 54px; padding-top: 25px; border-top: 1px solid #d5dfd5; font-size: 13px; }
+.anatomy-more a { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; }
+.anatomy-more a:hover { text-decoration: underline; }
+.anatomy-more svg { width: 19px; height: 19px; }
+
+/* The same figure changes its document position between the three visual docks. */
+[data-animation="travelling"] .anatomy-trail { display: block; }
+[data-animation="travelling"] .anatomy-traveller { position: absolute; top: 0; left: 0; width: 49%; margin: 0; z-index: 1; pointer-events: none; }
+[data-animation="travelling"] .anatomy-waypoints { position: absolute; top: 5px; left: 0; z-index: 2; }
+[data-animation="travelling"] .anatomy-chapters { display: block; }
+[data-animation="travelling"] .anatomy-chapter { display: grid; grid-template-columns: 1fr 1fr; align-items: center; column-gap: 8%; min-height: clamp(590px, 80svh, 760px); }
+[data-animation="travelling"] .anatomy-copy { max-width: 470px; }
+[data-animation="travelling"] .anatomy-dock { display: block; width: 100%; height: 500px; }
+[data-animation="travelling"] .anatomy-chapter:nth-child(2) .anatomy-copy { grid-column: 2; grid-row: 1; }
+[data-animation="travelling"] .anatomy-chapter:nth-child(2) .anatomy-dock { grid-column: 1; grid-row: 1; }
+[data-animation="travelling"] .anatomy-more { margin-top: 0; }
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .anatomy-introduction { gap: 40px; }
+  .anatomy-callout strong { font-size: 14px; }
+  .anatomy-callout p { font-size: 12px; }
+  [data-animation="travelling"] .anatomy-chapter { column-gap: 5%; }
+}
+
+@media (max-width: 900px) {
+  .anatomy-introduction { grid-template-columns: 1fr; gap: 22px; padding-bottom: 30px; }
+  .anatomy-introduction > p { max-width: 54ch; }
+  .anatomy-chapters { grid-template-columns: 1fr; gap: 44px; }
+  .anatomy-copy > p { max-width: 58ch; }
+  .anatomy-more { margin-top: 38px; }
+
+  /* A shorter, native sticky story keeps the diagram and its explanation together. */
+  [data-animation="compact"] .anatomy-track { height: 245svh; }
+  [data-animation="compact"] .anatomy-stage { position: sticky; top: 104px; height: calc(100svh - 120px); display: flex; flex-direction: column; }
+  [data-animation="compact"] .anatomy-traveller { flex: 0 0 45%; width: min(100%, 480px); height: 45%; margin: 0 auto; }
+  [data-animation="compact"] .anatomy-visual { height: 100%; aspect-ratio: auto; }
+  [data-animation="compact"] .anatomy-illustration { top: 30%; width: 94%; left: 3%; max-height: 70%; object-fit: contain; }
+  [data-animation="compact"] .anatomy-callout { inset: 0 auto auto 0; width: 100%; padding: 3px 0; }
+  [data-animation="compact"] .anatomy-callout p { max-width: none; }
+  [data-animation="compact"] .anatomy-leader--wide { display: none; }
+  [data-animation="compact"] .anatomy-leader--compact { display: block; }
+  [data-animation="compact"] .anatomy-waypoints { justify-content: space-between; flex: 0 0 auto; gap: 10px; padding-block: 7px 20px; }
+  [data-animation="compact"] .anatomy-waypoints button { font-size: 11px; }
+  [data-animation="compact"] .anatomy-waypoint-line { width: 28px; }
+  [data-animation="compact"] .anatomy-waypoints button[aria-current] .anatomy-waypoint-line { width: 46px; }
+  [data-animation="compact"] .anatomy-chapters { position: relative; display: block; flex: 1; }
+  [data-animation="compact"] .anatomy-chapter { position: absolute; inset: 0; }
+  [data-animation="compact"] .anatomy-chapter:not(:first-child) { visibility: hidden; opacity: 0; }
+  [data-animation="compact"] .anatomy-copy { max-width: 560px; margin-inline: auto; }
+  [data-animation="compact"] .anatomy-copy h3 { font-size: clamp(29px, 6vw, 38px); }
+  [data-animation="compact"] .anatomy-copy > p { font-size: 14px; line-height: 1.75; margin-top: 16px; }
+  [data-animation="compact"] .anatomy-copy > p + p { margin-top: 10px; }
+  [data-animation="compact"] .anatomy-copy > .text-link,
+  [data-animation="compact"] .anatomy-copy > .tg-button { margin-top: 21px; }
+  [data-animation="compact"] .anatomy-more { margin-top: 20px; }
+}
+
+@media (max-width: 480px) {
+  .pelvic-anatomy { padding-top: 58px; }
+  .anatomy-introduction h2 { font-size: 34px; }
+  .anatomy-introduction > p { font-size: 14px; }
+  .anatomy-callout { width: 48%; }
+  .anatomy-callout strong { font-size: 13px; }
+  .anatomy-callout p { font-size: 12px; line-height: 1.45; }
+  .anatomy-callout--0 { left: 0; }
+  .anatomy-callout--1 { bottom: 1%; }
+  .anatomy-more { font-size: 12px; }
+}
+
+@media (max-width: 900px) and (max-height: 760px) {
+  [data-animation="compact"] .anatomy-traveller { flex-basis: 38%; height: 38%; }
+  [data-animation="compact"] .anatomy-copy h3 { font-size: 27px; }
+  [data-animation="compact"] .anatomy-copy > p { font-size: 13px; }
+  [data-animation="compact"] .anatomy-waypoints { padding-bottom: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .anatomy-waypoint-line { transition: none; }
+  .anatomy-trail { display: none; }
+}

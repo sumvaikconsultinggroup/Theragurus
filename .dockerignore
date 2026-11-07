@@ -1,0 +1,11 @@
+node_modules
+.git
+.next
+.next-local
+.data
+.test-data
+.impeccable
+.reanimate
+.env*
+!.env.example
+*.tsbuildinfo

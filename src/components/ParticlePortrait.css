@@ -1,0 +1,8 @@
+.particle-portrait { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; padding: 0; background: none; color: inherit; cursor: pointer; isolation: isolate; }
+.particle-portrait > img { object-fit: contain; object-position: center bottom; opacity: 1; }
+.particle-portrait > canvas { position: absolute; inset: -8%; width: 116%; height: 116%; pointer-events: none; opacity: 0; }
+.particle-portrait[data-particles="active"] > img { opacity: calc(1 - var(--particle-reveal, 0)); }
+.particle-portrait[data-particles="active"] > canvas { opacity: var(--particle-reveal, 0); }
+.particle-portrait:focus-visible { outline: 2px solid #527d29; outline-offset: 8px; border-radius: 12px; }
+@media (max-width: 760px) { .particle-portrait > canvas { inset: 0; width: 100%; height: 100%; } }
+@media (prefers-reduced-motion: reduce) { .particle-portrait > canvas { display: none; } .particle-portrait[data-particles] > img { opacity: 1; } }

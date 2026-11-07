@@ -1,69 +1,273 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { ParticlePortrait } from "@/components/ParticlePortrait";
+import { Newsletter } from "@/components/Newsletter";
+import { ResponsivePhoto } from "@/components/ResponsivePhoto";
+import { SiteFade } from "@/components/SiteFade";
+import Link from "next/link";
+import { FaqList } from "@/components/FaqList";
+import { StoryCarousel } from "@/components/StoryCarousel";
+import { CareMarquee } from "@/components/CareMarquee";
+import { InstagramReels } from "@/components/InstagramReels";
+import { PelvicAnatomyJourney } from "@/components/PelvicAnatomyJourney";
+import {
+  HomeHero,
+  CareSelector,
+  JourneySection,
+  BreathingPause,
+} from "@/components/InteractiveSections";
+import {
+  ArrowIcon,
+  ButtonLink,
+  JournalCard,
+  SectionHeading,
+} from "@/components/Ui";
+import { JsonLd } from "@/components/JsonLd";
+import {
+  articlePreviews,
+  careServices,
+  conditions,
+  journey,
+  regions,
+} from "@/lib/content";
+import { pageGraph } from "@/lib/seo";
 
-export default function Home() {
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <JsonLd data={pageGraph("")} />
+      <HomeHero />
+      <CareMarquee />
+      <section className="tg-section home-introduction">
+        <div className="tg-container introduction-grid">
+          <div className="experience-orbits">
+            <div>
+              <strong>15+</strong>
+              <span>
+                years of clinical
+                <br />
+                experience
+              </span>
+            </div>
+            <div>
+              <strong>1:1</strong>
+              <span>
+                care, centered
+                <br />
+                around you
+              </span>
+            </div>
+          </div>
+          <SiteFade>
+            <h2>
+              Your body has a story.
+              <br />
+              We’re here to listen.
+            </h2>
+            <p>
+              Feeling better begins with feeling understood. At TheraGurus, we
+              look at the whole person: your movement, your breath, your
+              everyday life, and what matters to you.
+            </p>
+            <p>
+              From pelvic health to workplace wellbeing, our care is thoughtful,
+              personal, and built around your next chapter.
+            </p>
+            <Link href="/about-us" className="text-link">
+              A little more about us
+              <ArrowIcon diagonal={false} />
+            </Link>
+          </SiteFade>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+      </section>
+      <PelvicAnatomyJourney />
+      <CareSelector services={careServices} />
+      <section className="tg-section conditions-section">
+        <div className="tg-container">
+          <div className="section-heading-row">
+            <SectionHeading
+              centered={false}
+              title={
+                <>
+                  Some things are common.
+                  <br />
+                  You don’t have to face them alone.
+                </>
+              }
+              description="The worries you have been working around deserve a conversation. Start with what feels familiar."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <Link href="/conditions" className="text-link">
+              How we can help
+              <ArrowIcon diagonal={false} />
+            </Link>
+          </div>
+          <div className="conditions-grid">
+            {conditions.slice(0, 6).map((c) => (
+              <Link key={c.slug} href={`/${c.slug}`} className="condition-link">
+                <span>
+                  <strong>{c.title}</strong>
+                  <small>{c.description}</small>
+                </span>
+                <span className="condition-arrow">
+                  <ArrowIcon />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+      <JourneySection steps={journey} />
+      <section id="founder" className="tg-section founder-section">
+        <div className="tg-container founder-grid">
+          <div className="founder-portrait">
+            <ParticlePortrait src="/trapti.png" alt="Trapti Agarwal, founder and pelvic health occupational therapist" />
+            <div className="founder-signature">
+              Science, care,
+              <br />
+              and a human connection.
+            </div>
+          </div>
+          <SiteFade className="founder-copy">
+            <h2>
+              A real person.
+              <br />
+              In your corner.
+            </h2>
+            <p className="founder-name">Meet Trapti Agarwal, OTR/L</p>
+            <p>
+              Founder, pelvic health occupational therapist, and a believer in
+              caring for the whole person. Trapti brings clinical experience,
+              thoughtful listening, and a personal approach to every
+              conversation.
+            </p>
+            <ul className="check-list">
+              <li>Pelvic health occupational therapist</li>
+              <li>Certified Ergonomics Assessment Specialist</li>
+              <li>Certified Kinesio Taping Practitioner</li>
+              <li>NLP coach and whole-person care advocate</li>
+            </ul>
+            <ButtonLink href="/meet-the-owner">Get to know Trapti</ButtonLink>
+            <Link href="/founders-message" className="text-link">
+              A note from our founder
+              <ArrowIcon diagonal={false} />
+            </Link>
+          </SiteFade>
+        </div>
+      </section>
+      <InstagramReels />
+      <section id="stories" className="tg-section stories-section">
+        <div className="tg-container">
+          <SectionHeading
+            title={
+              <>
+                Small steps.
+                <br />
+                Meaningful stories.
+              </>
+            }
+            description="Every person’s experience is their own. Here’s what clients have shared about feeling heard, supported, and cared for."
+          />
+          <StoryCarousel />
+          <div className="center-action">
+            <Link className="text-link" href="/reviews">
+              More client stories
+              <ArrowIcon diagonal={false} />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <BreathingPause />
+      <section className="tg-section">
+        <div className="tg-container">
+          <div className="section-heading-row">
+            <SectionHeading
+              centered={false}
+              title={
+                <>
+                  A little understanding
+                  <br />
+                  goes a long way.
+                </>
+              }
+              description="Thoughtful reads on pelvic health, recovery, and feeling better at work."
+            />
+            <Link className="text-link" href="/blog">
+              Explore the journal
+              <ArrowIcon diagonal={false} />
+            </Link>
+          </div>
+          <div className="journal-grid">
+            {articlePreviews.slice(0, 3).map((article, i) => (
+              <JournalCard key={article.slug} article={article} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="tg-section reach-section">
+        <div className="tg-container reach-grid">
+          <div>
+            <h2>
+              Close to home.
+              <br />
+              Connected across the world.
+            </h2>
+            <p>
+              Rooted in Santa Clarita, with care conversations reaching Los
+              Angeles, India, Dubai, and Saudi Arabia. Let’s talk about the
+              options available where you are.
+            </p>
+            <ButtonLink href="/locations" variant="outline">
+              Find care near you
+            </ButtonLink>
+          </div>
+          <div className="region-links">
+            {regions.map((r) => (
+              <Link href={`/${r.slug}`} key={r.slug}>
+                <span>{r.name}</span>
+                <span>
+                  {r.name === "United States"
+                    ? "In-person & online"
+                    : "Online guidance"}
+                </span>
+                <ArrowIcon />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Newsletter />
+      <section id="faq" className="tg-section faq-section">
+        <div className="tg-container faq-grid">
+          <div>
+            <SectionHeading
+              centered={false}
+              title={
+                <>
+                  A few answers.
+                  <br />A little more ease.
+                </>
+              }
+              description="It’s natural to have questions before you begin. We’re here to help you feel comfortable taking the next step."
+            />
+            <div className="faq-image">
+              <ResponsivePhoto
+                src="/mindful-wellness.jpg"
+                alt="A quiet moment of mindful movement"
+                fill
+                sizes="(min-width:900px) 30vw, 90vw"
+              />
+            </div>
+            <Link className="text-link" href="/contact-us">
+              Still have a question? Let’s talk
+              <ArrowIcon diagonal={false} />
+            </Link>
+          </div>
+          <FaqList />
+        </div>
+      </section>
+    </>
   );
 }

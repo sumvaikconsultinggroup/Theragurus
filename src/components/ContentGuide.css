@@ -1,0 +1,206 @@
+.content-guide {
+  background: white;
+}
+.guide-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 36px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid color-mix(in srgb, var(--brand-blue) 14%, white);
+}
+.guide-topics a,
+.guide-mobile-nav nav a {
+  color: var(--brand-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.guide-topics a:hover,
+.guide-mobile-nav nav a:hover {
+  color: var(--brand-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.guide-posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.guide-post {
+  min-width: 0;
+  scroll-margin-top: 125px;
+  background: var(--brand-pale);
+  border-radius: 18px;
+  padding: 26px 26px 28px;
+}
+.guide-post-feature {
+  grid-column: 1 / -1;
+  background: transparent;
+  border-radius: 0;
+  padding: 4px 0 8px;
+}
+.guide-post-feature + .guide-post-feature {
+  margin-top: 8px;
+  padding-top: 32px;
+  border-top: 1px solid color-mix(in srgb, var(--brand-blue) 12%, white);
+}
+.guide-post h2 {
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin-bottom: 12px;
+}
+.guide-post-feature h2 {
+  font-size: clamp(32px, 3.6vw, 48px);
+  max-width: 18ch;
+  margin-bottom: 18px;
+}
+.guide-post p,
+.guide-post li,
+.guide-post blockquote {
+  font-size: 14px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.guide-post-feature p,
+.guide-post-feature li,
+.guide-post-feature blockquote {
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 68ch;
+}
+.guide-post p + p {
+  margin-top: 12px;
+}
+.guide-post ul {
+  padding-left: 20px;
+  list-style: disc;
+  margin: 14px 0;
+}
+.guide-post li {
+  padding-left: 4px;
+  margin: 8px 0;
+}
+.guide-post li::marker {
+  color: var(--brand-green);
+}
+.guide-help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  margin-top: 36px;
+}
+.guide-help p {
+  font-size: 14px;
+  margin: 0;
+}
+.guide-help .text-link {
+  font-size: 14px;
+}
+.editorial-copy ul {
+  list-style: disc;
+  padding-left: 24px;
+  margin: 22px 0;
+}
+.editorial-copy li {
+  margin: 10px 0;
+  padding-left: 5px;
+}
+.guide-questions {
+  margin-top: 48px;
+}
+.guide-questions h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  margin-bottom: 8px;
+}
+.guide-questions details {
+  border-bottom: 1px solid color-mix(in srgb, var(--brand-blue) 20%, white);
+}
+.guide-questions summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  cursor: pointer;
+  padding: 22px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--brand-blue);
+}
+.guide-questions summary::-webkit-details-marker,
+.guide-mobile-nav summary::-webkit-details-marker {
+  display: none;
+}
+.guide-questions details[open] > div {
+  padding: 0 0 24px;
+}
+.guide-plus {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+.guide-plus::before,
+.guide-plus::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 1px;
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+}
+.guide-plus::after {
+  transform: rotate(90deg);
+}
+details[open] > summary .guide-plus::after {
+  transform: rotate(0);
+}
+.guide-mobile-nav {
+  display: none;
+}
+.guide-mobile-nav summary svg {
+  width: 18px;
+  height: 18px;
+  transform: rotate(90deg);
+}
+.guide-mobile-nav[open] summary svg {
+  transform: rotate(-90deg);
+}
+@media (max-width: 760px) {
+  .guide-topics {
+    display: none;
+  }
+  .guide-posts {
+    grid-template-columns: 1fr;
+  }
+  .guide-mobile-nav {
+    display: block;
+    margin-bottom: 28px;
+    border-block: 1px solid color-mix(in srgb, var(--brand-blue) 22%, white);
+  }
+  .guide-mobile-nav summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    cursor: pointer;
+    color: var(--brand-blue);
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .guide-mobile-nav nav {
+    display: grid;
+    gap: 8px;
+    padding: 0 0 18px;
+  }
+  .guide-post {
+    scroll-margin-top: 105px;
+  }
+}

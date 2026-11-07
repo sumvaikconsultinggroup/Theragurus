@@ -1,0 +1,80 @@
+.site-intro[hidden] {
+  display: none;
+}
+.site-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  color: white;
+}
+.intro-panels {
+  position: absolute;
+  inset: 0;
+}
+.intro-panel {
+  position: absolute;
+  top: -1px;
+  width: calc(25% + 2px);
+  height: calc(100% + 2px);
+  background: var(--brand-blue);
+  will-change: transform;
+}
+/* Cover fractional-pixel joins between the independently animated layers. */
+.intro-panel:nth-child(1) { left: -1px; }
+.intro-panel:nth-child(2) { left: calc(25% - 1px); }
+.intro-panel:nth-child(3) { left: calc(50% - 1px); }
+.intro-panel:nth-child(4) { left: calc(75% - 1px); }
+.site-intro-brand {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.intro-wordmark {
+  display: block;
+  width: clamp(280px, 34vw, 480px);
+  max-width: calc(100vw - 48px);
+  height: auto;
+}
+.intro-logo-stroke {
+  color: white;
+  fill: currentColor;
+  fill-opacity: 0;
+  stroke: currentColor;
+  stroke-width: 0.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.intro-logo-stroke--green {
+  color: var(--brand-green);
+}
+.journey-rail-svg {
+  position: absolute;
+  inset-block: 0;
+  left: -20px;
+  width: 90px;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.journey-rail-svg .journey-progress {
+  fill: none;
+  stroke: var(--brand-green);
+  stroke-width: 3;
+  stroke-linecap: round;
+  background: none;
+}
+.journey-guide {
+  stroke: #cbdad4;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 7;
+  stroke-linecap: round;
+}
+.journey-marker { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .site-intro {
+    display: none;
+  }
+}

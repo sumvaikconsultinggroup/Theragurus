@@ -1,0 +1,245 @@
+.location-explore-section {
+  padding-top: 0;
+}
+.location-map {
+  margin-bottom: 0;
+}
+.location-map-shell {
+  border: 1px solid color-mix(in srgb, var(--brand-blue) 22%, white);
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+}
+.location-map-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+}
+.location-map-scope {
+  display: inline-flex;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid color-mix(in srgb, var(--brand-blue) 22%, white);
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+.location-map-scope button {
+  min-height: 44px;
+  padding: 9px 17px;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: var(--brand-blue);
+  font-size: 13px;
+}
+.location-map-scope button[aria-pressed="true"] {
+  background: var(--brand-blue);
+  color: white;
+}
+.location-map-scope button:not([aria-pressed="true"]):hover {
+  background: var(--brand-pale);
+}
+.location-map-controls label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--brand-blue);
+  font-size: 12px;
+  font-weight: 500;
+}
+.location-map-select {
+  width: min(340px, 100%);
+}
+.location-map-controls select {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--brand-blue) 45%, white);
+  border-radius: 10px;
+  background: white;
+  color: var(--brand-blue);
+  font-size: 15px;
+}
+.location-map-canvas {
+  display: flex;
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  height: 400px;
+  background: var(--brand-mist);
+}
+.location-map-leaflet {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans), sans-serif;
+}
+.location-map-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  padding: 22px 24px;
+}
+.location-map-details h3 {
+  color: var(--brand-blue);
+  font-size: 24px;
+}
+.location-map-details p {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.location-map-details .location-map-care {
+  margin-top: 4px;
+  font-size: 13px;
+}
+.location-map-details .location-map-address {
+  color: var(--brand-blue);
+  font-size: 12px;
+}
+.location-map-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  color: var(--brand-muted);
+  font-size: 12px;
+}
+.location-map-toolbar > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.location-map-toolbar button {
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-muted);
+  font-size: 12px;
+}
+.location-map-toolbar button:hover,
+.location-map-toolbar button.is-selected {
+  color: var(--brand-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.location-map-note {
+  max-width: 850px;
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.location-map-loading,
+.location-map-loading-overlay {
+  display: grid;
+  min-height: 360px;
+  height: 100%;
+  place-items: center;
+  padding: 24px;
+  color: var(--brand-blue);
+  background: var(--brand-mist);
+  text-align: center;
+  font-size: 13px;
+}
+.location-map-loading-overlay {
+  position: absolute;
+  z-index: 1100;
+  inset: 0;
+  pointer-events: none;
+  background: rgb(240 245 245 / 88%);
+}
+.location-map .location-map-marker {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+}
+.location-map-pin {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: var(--brand-blue);
+  box-shadow: 0 2px 7px rgb(32 56 68 / 30%);
+}
+.location-map .leaflet-container:focus-visible {
+  outline-offset: -3px;
+}
+.location-map-marker-selected .location-map-pin {
+  width: 23px;
+  height: 23px;
+  background: var(--brand-green);
+  border-color: var(--brand-blue);
+}
+.location-map .location-map-tooltip {
+  border: 0;
+  border-radius: 99px;
+  padding: 6px 12px;
+  background: var(--brand-blue);
+  color: white;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 12px;
+  box-shadow: 0 3px 10px rgb(32 56 68 / 18%);
+}
+.location-map .leaflet-tooltip-top::before {
+  border-top-color: var(--brand-blue);
+}
+.location-map .leaflet-tooltip-right::before {
+  border-right-color: var(--brand-blue);
+}
+.location-map .leaflet-tooltip-left::before {
+  border-left-color: var(--brand-blue);
+}
+.location-map .leaflet-control-zoom a {
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  color: var(--brand-blue);
+}
+.location-map .leaflet-control-attribution {
+  max-width: 100%;
+  font-size: 10px;
+  color: var(--brand-muted);
+  background: rgb(255 255 255 / 92%);
+}
+.location-map .leaflet-control-attribution a,
+.location-map .leaflet-popup-content a {
+  color: var(--brand-blue);
+}
+.location-map .leaflet-popup-content {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.location-map .leaflet-popup-content p {
+  margin: 8px 0;
+}
+@media (max-width: 760px) {
+  .location-map-controls {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  .location-map-select {
+    width: 100%;
+  }
+  .location-map-canvas,
+  .location-map-leaflet {
+    height: 320px;
+  }
+  .location-map-footer {
+    padding: 20px;
+  }
+  .location-map-toolbar {
+    align-items: flex-start;
+    width: 100%;
+    gap: 8px 20px;
+  }
+}

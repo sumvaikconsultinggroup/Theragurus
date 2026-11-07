@@ -1,0 +1,65 @@
+{
+  "customers": {
+    "name": "booking_customers",
+    "indexes": [
+      { "key": { "id": 1 }, "unique": true, "name": "unique_customer_id" },
+      { "key": { "email": 1 }, "unique": true, "name": "unique_customer_email" }
+    ]
+  },
+  "sessions": {
+    "name": "booking_sessions",
+    "indexes": [
+      { "key": { "customer_id": 1 }, "name": "session_customer" },
+      {
+        "key": { "expires_at": 1 },
+        "expireAfterSeconds": 0,
+        "name": "session_expiry"
+      }
+    ]
+  },
+  "appointments": {
+    "name": "booking_appointments",
+    "indexes": [
+      { "key": { "id": 1 }, "unique": true, "name": "unique_appointment_id" },
+      {
+        "key": { "reference": 1 },
+        "unique": true,
+        "name": "unique_appointment_reference"
+      },
+      {
+        "key": { "idempotency_key": 1 },
+        "unique": true,
+        "name": "unique_appointment_submission"
+      },
+      {
+        "key": { "start_at": 1 },
+        "unique": true,
+        "partialFilterExpression": { "status": "requested" },
+        "name": "unique_active_start"
+      },
+      {
+        "key": { "status": 1, "end_at": 1, "start_at": 1 },
+        "name": "appointment_availability"
+      },
+      {
+        "key": { "customer_id": 1, "start_at": -1 },
+        "name": "appointment_customer"
+      },
+      {
+        "key": { "guest_hash": 1, "start_at": -1 },
+        "name": "appointment_guest"
+      }
+    ]
+  },
+  "limits": {
+    "name": "booking_request_limits",
+    "indexes": [
+      {
+        "key": { "expires_at": 1 },
+        "expireAfterSeconds": 0,
+        "name": "limit_expiry"
+      }
+    ]
+  },
+  "schedule": { "name": "booking_schedule", "indexes": [] }
+}

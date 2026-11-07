@@ -1,0 +1,185 @@
+.tg-toasts {
+  position: fixed;
+  z-index: 140;
+  top: 108px;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(420px, calc(100vw - 32px));
+  pointer-events: none;
+}
+.tg-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: auto;
+  padding: 14px 12px 14px 14px;
+  border: 1px solid #e6e8ee;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgb(16 24 40 / 8%);
+  animation: tg-toast-in 280ms cubic-bezier(0.16, 0.8, 0.24, 1) both;
+}
+.tg-toast--success {
+  background: linear-gradient(90deg, #e8f7ee 0%, #ffffff 46%);
+}
+.tg-toast--note {
+  background: linear-gradient(90deg, #eef2ff 0%, #ffffff 48%);
+}
+.tg-toast--alert {
+  background: linear-gradient(90deg, #fdeeee 0%, #ffffff 52%);
+}
+.tg-toast-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 50%;
+  color: #fff;
+}
+.tg-toast--success .tg-toast-icon { background: #1f9d55; }
+.tg-toast--note .tg-toast-icon { background: #3b6fe8; }
+.tg-toast--alert .tg-toast-icon { background: #e24b4b; }
+.tg-toast-icon svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tg-toast-body {
+  min-width: 0;
+  flex: 1;
+}
+.tg-toast-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.tg-toast-title,
+.tg-toast-detail {
+  margin: 0;
+}
+.tg-toast-title {
+  flex: 1;
+  padding-top: 1px;
+  color: #1c1c1c;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.tg-toast-detail {
+  margin-top: 3px;
+  padding-right: 8px;
+  color: #6d7278;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+.tg-toast-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: -2px -2px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #b0b4ba;
+}
+.tg-toast-close svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.tg-toast-close:hover {
+  color: #6d7278;
+}
+.tg-toast-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.tg-toast-retry,
+.tg-toast-dismiss {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.tg-toast-retry {
+  color: #3b6fe8;
+  font-weight: 600;
+}
+.tg-toast-retry:hover {
+  color: #2b5ed0;
+}
+.tg-toast-dismiss {
+  color: #8b9096;
+  font-weight: 500;
+}
+.tg-toast-dismiss:hover {
+  color: #4b5056;
+}
+html[data-admin-theme="dark"] .tg-toast {
+  border-color: rgb(255 255 255 / 8%);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 32%);
+}
+html[data-admin-theme="dark"] .tg-toast--success {
+  background: linear-gradient(90deg, rgb(31 157 85 / 22%) 0%, rgb(22 26 28) 48%);
+}
+html[data-admin-theme="dark"] .tg-toast--note {
+  background: linear-gradient(90deg, rgb(59 111 232 / 22%) 0%, rgb(22 26 28) 48%);
+}
+html[data-admin-theme="dark"] .tg-toast--alert {
+  background: linear-gradient(90deg, rgb(226 75 75 / 20%) 0%, rgb(22 26 28) 50%);
+}
+html[data-admin-theme="dark"] .tg-toast-title {
+  color: #f4f5f6;
+}
+html[data-admin-theme="dark"] .tg-toast-detail,
+html[data-admin-theme="dark"] .tg-toast-dismiss {
+  color: #b7bcc3;
+}
+html[data-admin-theme="dark"] .tg-toast-close {
+  color: #8d939b;
+}
+@keyframes tg-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 720px) {
+  .tg-toasts {
+    top: auto;
+    right: 12px;
+    bottom: 16px;
+    left: 12px;
+    width: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tg-toast {
+    animation: none;
+  }
+}

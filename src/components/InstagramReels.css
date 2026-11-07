@@ -1,0 +1,50 @@
+.instagram-reels { padding: clamp(64px, 8vw, 112px) 0 0; background: #f0f5f5; color: #2e4856; overflow: clip; }
+.instagram-reels + .stories-section { padding-top: clamp(36px, 4vw, 52px); }
+.reels-heading-row { display: flex; justify-content: space-between; align-items: end; gap: 28px; }
+.reels-heading-row h2 { font-size: clamp(40px, 4.8vw, 72px); line-height: 1.08; margin: 0 0 22px; letter-spacing: -.035em; }
+.reels-heading-row h2 em { font-style: italic; }
+.reels-heading-row p { color: #526b77; line-height: 1.8; margin: 0; }
+.reels-profile { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; text-decoration: none; padding-bottom: 6px; }
+.reels-profile svg { width: 24px; height: 24px; }
+.reels-profile svg:last-child { width: 16px; height: 16px; }
+.reels-profile:hover { text-decoration: underline; text-underline-offset: 6px; }
+.reels-stage { position: relative; isolation: isolate; contain: paint; overflow: hidden; margin-top: 22px; }
+.reels-curved { height: 480px; width: 100%; }
+.reels-orbit-tile { padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: #203844; color: white; cursor: pointer; }
+.reels-orbit-poster { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.reels-tile-play { position: absolute; inset: calc(50% - 27px) auto auto calc(50% - 27px); width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: #203844c9; transition: background .2s; }
+.reels-tile-play svg { width: 24px; height: 24px; }
+.reels-orbit-tile:hover .reels-tile-play { background: #78c000; color: #203844; }
+.reels-tile-duration { position: absolute; bottom: 14px; right: 12px; padding: 3px 7px; border-radius: 5px; background: #203844d9; font-size: 11px; font-variant-numeric: tabular-nums; }
+.instagram-reels button:focus-visible, .instagram-reels a:focus-visible { outline: 2px solid #2e4856; outline-offset: 5px; }
+.reels-dialog { margin: auto; border: 0; padding: 0; background: transparent; color: #2e4856; max-width: min(440px, calc(100vw - 28px)); max-height: calc(100dvh - 32px); width: 100%; overflow: auto; overscroll-behavior: contain; border-radius: 16px; }
+.reels-dialog::backdrop { background: #132b36d9; backdrop-filter: blur(10px); }
+.reels-player { position: relative; background: #f0f5f5; }
+.reels-player video { display: block; width: 100%; max-height: calc(100dvh - 174px); aspect-ratio: 9 / 16; background: #152c36; object-fit: contain; }
+.reels-close { position: absolute; top: 12px; right: 12px; z-index: 2; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; border: 0; background: #203844e6; color: white; cursor: pointer; }
+.reels-close svg { width: 20px; height: 20px; }
+.reels-player-copy { padding: 18px 22px 22px; }
+.reels-player-copy h3 { font-size: 23px; line-height: 1.25; margin: 0 0 12px; }
+.reels-player-copy a { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; text-underline-offset: 4px; }
+.reels-player-copy p { font-size: 12px; line-height: 1.6; }
+@media (max-width: 700px) {
+  .reels-heading-row { align-items: start; flex-direction: column; gap: 20px; }
+  .reels-heading-row h2 { font-size: 46px; }
+  .reels-heading-row p { font-size: 14px; }
+  .reels-desktop-break { display: none; }
+  .reels-profile { font-size: 13px; }
+  .reels-stage { margin-top: 12px; }
+  .reels-curved { height: 390px; }
+}
+.reels-still { display: none; gap: 20px; overflow-x: auto; padding-block: 32px 12px; scrollbar-color: #94abae transparent; }
+.reels-still button { position: relative; flex: 0 0 200px; border: 0; border-radius: 14px; overflow: hidden; padding: 0; cursor: pointer; background: #203844; }
+.reels-still img { display: block; width: 200px; height: auto; }
+.reels-orbit-tile { will-change: transform; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.reels-stage:focus-within .reels-orbit-tile { animation-play-state: paused !important; }
+@media (hover: hover) {
+  .reels-stage:hover .reels-orbit-tile { animation-play-state: paused !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reels-stage { display: none; }
+  .reels-still { display: flex; }
+}

@@ -1,0 +1,14 @@
+.scroll-reveal-text { font: inherit; letter-spacing: inherit; }
+.scroll-reveal [data-word], .scroll-reveal [data-piece] { display: inline-block; }
+.gooey-main-navigation [data-gooey-index] :is(a, button) { font-weight: 400; }
+.gooey-main-navigation [aria-controls="services-navigation"] > span:first-child { order: 1; }
+.gooey-main-navigation > div > ul { flex-wrap: nowrap; }
+@media (max-width: 1180px) {
+  .gooey-main-navigation { --gn-font: 12px !important; --gn-x: 10px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal [data-piece] { opacity: 1 !important; filter: none !important; transform: none !important; }
+}
+@media print {
+  .scroll-reveal, .scroll-reveal [data-piece] { opacity: 1 !important; filter: none !important; transform: none !important; }
+}

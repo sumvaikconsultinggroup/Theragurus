@@ -1,13 +1,18 @@
 import type { NextConfig } from "next";
 
+const compatibleDevelopment = process.env.THERAGURUS_CSS_COMPILER === "javascript";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  distDir: compatibleDevelopment ? ".next-local" : ".next",
+  images: {
+    qualities: [75, 90],
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+  },
   turbopack: {
+    root: process.cwd(),
     rules: {
       "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
+        loaders: [compatibleDevelopment ? "./scripts/tailwind-js-loader.cjs" : "@tailwindcss/turbopack"],
         as: "*.css",
       },
     },
