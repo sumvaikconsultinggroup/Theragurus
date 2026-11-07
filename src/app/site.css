@@ -1983,11 +1983,6 @@ p {
 .contact-form textarea {
   resize: vertical;
 }
-.contact-form .form-note {
-  font-size: 11px;
-  line-height: 1.8;
-  margin: 0 0 24px;
-}
 .contact-form .form-feedback {
   margin: 22px 0 0;
   padding: 18px;

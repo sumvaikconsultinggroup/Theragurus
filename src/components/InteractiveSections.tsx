@@ -1032,10 +1032,6 @@ export function ContactForm() {
         />
         <FieldError id="contact-message-error" message={errors.message} />
       </label>
-      <p className="form-note">
-        This note goes to the clinic. It isn’t a medical record, and it doesn’t
-        book a time.
-      </p>
       <button
         type="submit"
         className={busy ? "tg-button tg-button--primary contact-send is-loading" : "tg-button tg-button--primary contact-send"}

@@ -81,12 +81,30 @@ export async function handle(
     );
   }
 }
+function allowedOrigin(request: NextRequest) {
+  const origin = request.headers.get("origin");
+  if (!origin) return false;
+  let sent: URL;
+  try {
+    sent = new URL(origin);
+  } catch {
+    return false;
+  }
+  if (sent.host === request.nextUrl.host) return true;
+  const configured = process.env.APP_ORIGIN;
+  if (!configured) return false;
+  try {
+    const expected = new URL(configured);
+    const bare = expected.host.replace(/^www\./, "");
+    return sent.host === expected.host || sent.host === bare || sent.host === `www.${bare}`;
+  } catch {
+    return false;
+  }
+}
 export async function input(
   request: NextRequest,
 ): Promise<Record<string, unknown>> {
-  const origin = request.headers.get("origin");
-  const expected = process.env.APP_ORIGIN || request.nextUrl.origin;
-  if (origin !== expected)
+  if (!allowedOrigin(request))
     throw new ApiError(
       403,
       "Please submit this form from the TheraGurus website.",
