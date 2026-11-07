@@ -10,11 +10,11 @@ import { CareMarquee } from "@/components/CareMarquee";
 import { InstagramReels } from "@/components/InstagramReels";
 import { PelvicAnatomyJourney } from "@/components/PelvicAnatomyJourney";
 import {
-  HomeHero,
   CareSelector,
   JourneySection,
   BreathingPause,
 } from "@/components/InteractiveSections";
+import { HallwayExperience } from "@/components/hallway/HallwayExperience";
 import {
   ArrowIcon,
   ButtonLink,
@@ -39,9 +39,9 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={pageGraph("")} />
-      <HomeHero />
+      <HallwayExperience asHero />
       <CareMarquee />
-      <section className="tg-section home-introduction">
+      <section id="home-care" className="tg-section home-introduction">
         <div className="tg-container introduction-grid">
           <div className="experience-orbits">
             <div>

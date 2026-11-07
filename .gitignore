@@ -22,6 +22,7 @@
 /build
 /.data/
 /.test-data/
+/.reanimate/
 
 # misc
 .DS_Store

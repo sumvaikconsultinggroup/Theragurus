@@ -9,7 +9,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { ArrowIcon, Brand } from "@/components/Ui";
-import GooeyNav from "./GooeyNav";
+import GooeyNav from "@/components/GooeyNav";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -53,10 +53,23 @@ const serviceNavigation = [
   },
 ];
 
-export function SiteHeader({ journalSlugs = [] }: { journalSlugs?: string[] }) {
+export function SiteHeader({
+  journalSlugs = [],
+  scrolled: scrolledOverride,
+  activeHref,
+  className = "",
+  locked = false,
+}: {
+  journalSlugs?: string[];
+  scrolled?: boolean;
+  activeHref?: string;
+  className?: string;
+  locked?: boolean;
+}) {
   const pathname = usePathname();
   const root = useRef<HTMLElement>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolledState, setScrolled] = useState(false);
+  const scrolled = scrolledOverride ?? scrolledState;
   const [menu, setMenu] = useState<"mobile" | "services" | null>(null);
   const reduced = useReducedMotion();
   const locationSection =
@@ -76,13 +89,18 @@ export function SiteHeader({ journalSlugs = [] }: { journalSlugs?: string[] }) {
         : pathname.startsWith("/booking/")
           ? "/account"
           : pathname;
+  const resolvedHref = activeHref ?? currentHref;
+  const routeIndex = Math.max(0, navigation.findIndex((item) => item.href === resolvedHref));
+  const servicesIndex = navigation.findIndex((item) => item.label === "Services");
+  const gooeyIndex = menu === "services" ? servicesIndex : routeIndex;
   useEffect(() => {
+    if (scrolledOverride !== undefined) return;
     const scroll = () =>
       setScrolled((compact) => window.scrollY > (compact ? 48 : 96));
     scroll();
     window.addEventListener("scroll", scroll, { passive: true });
     return () => window.removeEventListener("scroll", scroll);
-  }, []);
+  }, [scrolledOverride]);
   useEffect(() => {
     if (!menu) return;
     const key = (e: KeyboardEvent) => {
@@ -108,24 +126,47 @@ export function SiteHeader({ journalSlugs = [] }: { journalSlugs?: string[] }) {
   return (
     <header
       ref={root}
-      className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}
+      className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${className}`.trim()}
+      inert={locked || undefined}
     >
       <div className="site-header-bar">
         <Brand />
         <GooeyNav
-          className="desktop-navigation gooey-main-navigation"
-          items={navigation.map((item) => item.label === "Services" ? {
-            label: item.label,
-            expanded: menu === "services",
-            controls: "services-navigation",
-            icon: <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>,
-          } : item)}
-          activeIndex={navigation.findIndex((item) => item.href === (menu === "services" ? "/our-services" : currentHref))}
-          onChange={(_, item) => setMenu(item.label === "Services" ? menu === "services" ? null : "services" : null)}
-          theme="light" frame={false} color="#d7edb0" activeTextColor="#2e4856"
-          colors={["#d7edb0", "#c8e995"]} contrastOverlay={false}
-          particleCount={12} spread={22} animationTime={650} timeVariance={160} gooeyness={0.45} wobble={0.3}
-          style={{ "--gn-ink": "#2e4856", "--gn-muted": "#2e4856", "--gn-font": "13px", "--gn-x": "14px", "--gn-y": "12px", "--gn-gap": "2px" }}
+          className="desktop-navigation"
+          navLabel="Primary"
+          items={navigation.map((item) =>
+            item.label === "Services"
+              ? {
+                  label: "Services",
+                  expanded: menu === "services",
+                  controls: "services-navigation",
+                  icon: (
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="m4 6 4 4 4-4" />
+                    </svg>
+                  ),
+                }
+              : { label: item.label, href: item.href },
+          )}
+          activeIndex={gooeyIndex}
+          theme="light"
+          color="#d4f08a"
+          activeTextColor="#203844"
+          colors={["#e7f6c8", "#9ed84a", "#78c000"]}
+          frame={false}
+          size={scrolled ? "sm" : "md"}
+          particleCount={32}
+          spread={120}
+          animationTime={600}
+          timeVariance={300}
+          gooeyness={1}
+          wobble={1}
+          hoverEffect
+          style={{ "--gn-ink": "#203844", "--gn-muted": "#2e4856" }}
+          onChange={(_index, item) => {
+            if (!item.href) setMenu(menu === "services" ? null : "services");
+            else setMenu(null);
+          }}
         />
         <div className="header-actions">
           <Link
