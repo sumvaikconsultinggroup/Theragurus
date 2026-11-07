@@ -15,6 +15,7 @@ import {
   BreathingPause,
 } from "@/components/InteractiveSections";
 import { HallwayExperience } from "@/components/hallway/HallwayExperience";
+import { SelectedWork } from "@/components/SelectedWork";
 import {
   ArrowIcon,
   ButtonLink,
@@ -40,6 +41,7 @@ export default function HomePage() {
     <>
       <JsonLd data={pageGraph("")} />
       <HallwayExperience asHero />
+      <SelectedWork />
       <CareMarquee />
       <section id="home-care" className="tg-section home-introduction">
         <div className="tg-container introduction-grid">

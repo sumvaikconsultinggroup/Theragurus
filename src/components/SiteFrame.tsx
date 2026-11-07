@@ -114,14 +114,6 @@ export function SiteFrame({
 }) {
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return <>{children}</>;
-  if (pathname === "/test/hallway") {
-    return (
-      <>
-        <HomeIntro />
-        {children}
-      </>
-    );
-  }
   return (
     <>
       {pathname === "/" && <HomeIntro />}

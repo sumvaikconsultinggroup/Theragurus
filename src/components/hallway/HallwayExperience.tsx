@@ -201,10 +201,6 @@ export function HallwayExperience({ asHero = false }: { asHero?: boolean }) {
     const observer = new IntersectionObserver(entries => { visible=entries[0].isIntersecting; if(visible) {target=progress();kick();} else {cancelAnimationFrame(raf);raf=0;} });
     const resize = new ResizeObserver(measure);
     el.dataset.enhanced = "true";
-    if (asHero) {
-      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-      window.scrollTo(0, 0);
-    }
     onMotion(); measure(); observer.observe(el); resize.observe(stage);
     window.addEventListener("scroll",onScroll,{passive:true});
     stage.addEventListener("pointermove",onPointer,{passive:true}); stage.addEventListener("pointerleave",onLeave);
@@ -218,7 +214,6 @@ export function HallwayExperience({ asHero = false }: { asHero?: boolean }) {
     return () => {
       disposed=true;cancelAnimationFrame(raf);observer.disconnect();resize.disconnect();room?.dispose();
       delete document.documentElement.dataset.hallArrival;
-      if (asHero && "scrollRestoration" in history) history.scrollRestoration = "auto";
       window.removeEventListener("scroll",onScroll);stage.removeEventListener("pointermove",onPointer);stage.removeEventListener("pointerleave",onLeave);
       document.removeEventListener("visibilitychange",onVisibility);media.removeEventListener("change",onMotion);
       canvas.removeEventListener("webglcontextlost",onContextLost);canvas.removeEventListener("webglcontextrestored",onContextRestored);
